@@ -12,7 +12,7 @@ module.exports = async (ctx,next) => {
     }
   } else if (message.MsgType === 'text') {
     if (message.Content == '1') {
-      console.log('回复1')
+      // console.log('回复1')
       ctx.body = {
         MsgType: 'text',
         Content: 'hello!!'

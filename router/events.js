@@ -18,7 +18,7 @@ module.exports = function () {
     await reply.apply(ctx, [ctx, next])
     // 通过tpl方法将所有信息转化没xml格式
     const xml = util.tpl(ctx.body, ctx.wechat)
-    console.log(xml)
+    // console.log(xml)
     ctx.status = 200
     ctx.type = 'application/xml'
     ctx.body = xml
