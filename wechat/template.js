@@ -38,4 +38,4 @@ const tpl = `
   </xml>
 `
 
-module.exports.compile = ejs.compile(tpl)
+module.exports = ejs.compile(tpl)
