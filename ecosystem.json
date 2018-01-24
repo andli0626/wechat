@@ -10,16 +10,18 @@
     }
   }],
   "deploy": {
-    "user": "root",
-    "host": ["101.201.237.72"],
-    "ref": "origin/master",
-    "repo": "https://github.com/lhz960904/wechat.git",
-    "path": "/var/www/wechat",
-    "ssh_options": "StrictHostKeyChecking=no",
-    "post-deploy": "npm install",
-    "pre-deploy-local" : "echo 'deploy success!'",
-    "env": {
-      "NODE_ENV": "production"
+    "production": {
+      "user": "root",
+      "host": ["101.201.237.72"],
+      "ref": "origin/master",
+      "repo": "https://github.com/lhz960904/wechat.git",
+      "path": "/var/www/wechat",
+      "ssh_options": "StrictHostKeyChecking=no",
+      "post-deploy": "npm install && pm2 startOrRestart ecosystem.json --env production",
+      "pre-deploy-local" : "echo 'deploy success!'",
+      "env": {
+        "NODE_ENV": "production"
+      }
     }
   }
 }
