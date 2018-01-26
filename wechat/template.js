@@ -9,19 +9,27 @@ const tpl = `
     <% if (MsgType === 'text') { %>
       <Content><![CDATA[<%- Content %>]]></Content>
     <% } else if (MsgType === 'image') { %>
-      <MediaId><![CDATA[<%= MediaId %>]]></MediaId>
+      <Image>
+        <MediaId><![CDATA[<%= MediaId %>]]></MediaId>
+      </Image>
     <% } else if (MsgType === 'voice') { %>
-      <MediaId><![CDATA[<%= MediaId %>]]></MediaId>
-    <% } else if (MsgType === 'voice') { %>
-      <MediaId><![CDATA[<%= MediaId %>]]></MediaId>
-      <Title><![CDATA[<%= Title %>]]></Title>
-      <Description><![CDATA[<%= Description %>]]></Description>
+      <Voice>
+        <MediaId><![CDATA[<%= MediaId %>]]></MediaId>
+      </Voice>
+    <% } else if (MsgType === 'video') { %>
+      <Video>
+        <MediaId><![CDATA[<%= MediaId %>]]></MediaId>
+        <Title><![CDATA[<%= Title %>]]></Title>
+        <Description><![CDATA[<%= Description %>]]></Description>
+      </Video>
     <% } else if (MsgType === 'music') { %>
-      <Title><![CDATA[<%= Title %>]]></Title>
-      <Description><![CDATA[<%= Description %>]]></Description>
-      <MusicURL><![CDATA[<%= MusicURL %>]]></MusicURL>
-      <HQMusicUrl><![CDATA[<%= HQMusicUrl %>]]></HQMusicUrl>
-      <ThumbMediaId><![CDATA[<%= ThumbMediaId %>]]></ThumbMediaId>
+      <Music>
+        <Title><![CDATA[<%= Title %>]]></Title>
+        <Description><![CDATA[<%= Description %>]]></Description>
+        <MusicURL><![CDATA[<%= MusicURL %>]]></MusicURL>
+        <HQMusicUrl><![CDATA[<%= HQMusicUrl %>]]></HQMusicUrl>
+        <ThumbMediaId><![CDATA[<%= ThumbMediaId %>]]></ThumbMediaId>
+      </Music> 
     <% } else if (MsgType === 'news') { %>
       <ArticleCount><![CDATA[<%= ArticleCount %>]]></ArticleCount>
       <Articles>
