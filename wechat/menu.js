@@ -1,7 +1,7 @@
 module.exports = {
   "button": [
     {
-      "name": "测试1",
+      "name": "测试一下",
       "sub_button": [
         {
           "name": "博客",

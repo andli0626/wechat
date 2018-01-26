@@ -61,9 +61,11 @@ module.exports = async (ctx,next) => {
       }
     } else if (message.Content === '#创#') {
       const data = await wechat.createMenu(menu)
+      // console.log(data)
+      const reply = data.errcode == 0 ? '创建菜单成功' : '创建菜单失败'
       ctx.body = {
         MsgType: 'text',
-        Content: `创建菜单成功`
+        Content: reply
       }
     } else {
       ctx.body = {
