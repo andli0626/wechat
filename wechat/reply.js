@@ -1,6 +1,7 @@
 const Wechat = require('./Wechat')
 const wechat = new Wechat()
 const menu = require('./menu')
+const {getNewData} = require('../util/movie')
 
 let SendPicsCount = 0 //菜单发照片的数量
 module.exports = async (ctx, next) => {
@@ -62,9 +63,11 @@ module.exports = async (ctx, next) => {
       default:
         if (!result) return
         if (result[1] === '电影') {
+          const arr = await getNewData(result[2])
           ctx.body = {
-            MsgType: 'text',
-            Content: `你要查询的电影是:\n${result[2]}\n目前功能在开发...`
+            MsgType: 'news',
+            ArticleCount: 3,
+            Articles: arr
           }
         } else {
           ctx.body = {

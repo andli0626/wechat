@@ -1,0 +1,50 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, user-scalable=no")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    link(rel="stylesheet", href="/css/movie.css")
+    title 电影详情
+  body
+    .container
+      .movie-head
+        img(src=image, class="background-image")
+        .base
+          h1.title #{title}
+          p.country #{country} · #{year}
+          .count
+            span.highlight #{wish_count}
+            span.plain-font 人喜欢
+            span.highlight #{comments_count}
+            span.plain-font 条评论
+      img(src=image, class="image")
+      .movie-data
+        .original-title
+          span #{original_title}
+        .flex-row
+          span.mark 评分
+          span #{rating}
+        .flex-row
+          span.mark 导演
+          span #{director}
+        .flex-row
+          span.mark 影人
+          span #{casts_name}
+        .flex-row
+          span.mark 类型
+          span #{genres}
+      .hr
+      .movie-summary
+        h2 剧情简介
+        span.content #{summary}
+      .hr
+      .movie-casts
+        h2 影人
+        .casts-wrapper
+          each item in casts_info
+            .cast
+              img(src=item.avatar, class="cast-img")
+              span #{item.name}
+
+      

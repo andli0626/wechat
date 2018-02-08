@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+
+.movie-head {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  position: relative;
+}
+.background-image {
+  width: 100%;
+  position: absolute;
+  top: -50%;
+  filter: blur(20px);
+  z-index: -1;
+}
+.base {
+  width: 100%;
+  height: 160px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.base .title {
+  font-size: 19px;
+  color: #fff;
+  font-weight: bold;
+  margin-top: 25px;
+  margin-left: 20px;
+  letter-spacing: 2px;
+}
+
+.base .country {
+  font-size: 14px;
+  color: #fff;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+.base .count {
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+.count .highlight {
+  color: #f21146;
+  font-size: 11px;
+  margin-right: 5px;
+}
+
+.count .plain-font {
+  color: #666;
+  font-size: 11px;
+  margin-right: 15px;
+}
+
+.image {
+  height: 119px;
+  width: 87px;
+  position: absolute;
+  top: 80px;
+  right: 15px;
+}
+
+.movie-data {
+  margin-left: 22px;
+  margin-top: 20px;
+  color: #777777;
+}
+
+.original-title {
+  color: #1f3463;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5px;
+}
+
+.mark {
+  margin-right: 15px;
+  white-space: nowrap;
+  color: #999999;
+}
+
+
+.hr {
+  margin-top: 22px;
+  height: 1px;
+  width: 100%;
+  background: #d9d9d9;
+}
+
+.movie-summary,
+.movie-casts {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+}
+.movie-summary .content {
+  margin-top: 10px;
+  margin-right: 20px;
+  line-height: 20px;
+  letter-spacing: 1px;
+}
+.movie-summary h2,
+.movie-casts h2 {
+  color: #999999;
+  margin-bottom: 10px;
+}
+
+.casts-wrapper {
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.cast {
+  display: inline-flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+  margin-right: 10px;
+  width: 85px;
+  text-align: center;
+  white-space: normal;
+}
+.cast img {
+  width: 85px;
+  height: 105px;
+}
+.cast span {
+  margin: 5px auto 0;
+  word-break: break-all;
+}
