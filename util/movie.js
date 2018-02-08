@@ -21,7 +21,7 @@ const getNewData = async (tag) => {
       Title: item.title,
       Description: '',
       PicUrl: item.images.small,
-      Url: `wechatz.free.ngrok.cc/movie/${item.id}`
+      Url: `http://wechat.kyriel.cn/movie/${item.id}`
     })
   })
   return ret
