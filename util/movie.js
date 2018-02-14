@@ -5,8 +5,8 @@ const getMovie = async (tag) => {
   const ret = await request({
     method: 'get',
     url: apiUrl,
-    data: {
-      tag,
+    params: {
+      q: tag
     }
   })
   return ret

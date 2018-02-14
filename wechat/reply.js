@@ -1,8 +1,9 @@
 const Wechat = require('./Wechat')
 const wechat = new Wechat()
+const path = require('path')
 const menu = require('./menu')
 const {getNewData} = require('../util/movie')
-
+const {getSongUrl} = require('../util/song')
 let SendPicsCount = 0 //菜单发照片的数量
 module.exports = async (ctx, next) => {
   const message = ctx.wechat
@@ -66,13 +67,22 @@ module.exports = async (ctx, next) => {
           const arr = await getNewData(result[2])
           ctx.body = {
             MsgType: 'news',
-            ArticleCount: 3,
+            ArticleCount: 1,
             Articles: arr
           }
         } else {
+          const data = await wechat.upload('image',path.resolve(__dirname, '../lihaozecq.jpg'))
+          // console.log(data)
+          const ThumbMediaId = data.media_id
+          const MusicURL = await getSongUrl(result[2])
+          console.log(MusicURL)
           ctx.body = {
-            MsgType: 'text',
-            Content: `你要听的歌曲是:\n${result[2]}\n目前功能在开发...`
+            MsgType: 'music',
+            Title: result[2],
+            Description: '测试',
+            ThumbMediaId: ThumbMediaId,
+            HQMusicUrl: MusicURL,
+            MusicURL: MusicURL
           }
         }
         break

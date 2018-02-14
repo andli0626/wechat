@@ -26,8 +26,8 @@ const tpl = `
       <Music>
         <Title><![CDATA[<%= Title %>]]></Title>
         <Description><![CDATA[<%= Description %>]]></Description>
-        <MusicURL><![CDATA[<%= MusicURL %>]]></MusicURL>
-        <HQMusicUrl><![CDATA[<%= HQMusicUrl %>]]></HQMusicUrl>
+        <MusicUrl><![CDATA[<%- MusicURL %>]]></MusicUrl>
+        <HQMusicUrl><![CDATA[<%- HQMusicUrl %>]]></HQMusicUrl>
         <ThumbMediaId><![CDATA[<%= ThumbMediaId %>]]></ThumbMediaId>
       </Music> 
     <% } else if (MsgType === 'news') { %>
