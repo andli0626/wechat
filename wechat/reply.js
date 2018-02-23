@@ -67,22 +67,14 @@ module.exports = async (ctx, next) => {
           const arr = await getNewData(result[2])
           ctx.body = {
             MsgType: 'news',
-            ArticleCount: 1,
+            ArticleCount: arr.length,
             Articles: arr
           }
         } else {
-          const data = await wechat.upload('image',path.resolve(__dirname, '../lihaozecq.jpg'))
-          // console.log(data)
-          const ThumbMediaId = data.media_id
           const MusicURL = await getSongUrl(result[2])
-          console.log(MusicURL)
           ctx.body = {
-            MsgType: 'music',
-            Title: result[2],
-            Description: '测试',
-            ThumbMediaId: ThumbMediaId,
-            HQMusicUrl: MusicURL,
-            MusicURL: MusicURL
+            MsgType: 'text',
+            Content: `<a href="${MusicURL}">${result[2]}</a>`
           }
         }
         break

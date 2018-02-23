@@ -3,9 +3,10 @@ const _ = require('lodash')
 const path = require('path')
 const {promisify} = require('util')
 const api = require('../config/api')
+const rp = require('request-promise') 
 const readFile = promisify(fs.readFile)
 const writeFile = promisify(fs.writeFile)
-const request = require('request-promise') 
+const {request} = require('../util/index')
 
 
 const TIME = 600 // 提前10分钟
@@ -20,8 +21,8 @@ class Wechat {
         this.token = JSON.parse(data)
       } else {
         let data = await request({
-          method: 'GET',
-          uri: api.accessToken
+          method: 'get',
+          url: api.accessToken
         })
         data.expires_in = (Date.now() / 1000) + data.expires_in - TIME
         writeFile(path.resolve(__dirname, '../accessToken.txt'), JSON.stringify(data))
@@ -45,9 +46,9 @@ class Wechat {
   async createMenu(menu) {
     const url = api.createMenu + '?access_token=' + await this.getAccessToken()
     const data = await request({
-      method: 'POST',
-      uri: url,
-      body: menu
+      method: 'post',
+      url: url,
+      data: menu
     })
     return data
   }
@@ -87,7 +88,7 @@ class Wechat {
     } else {
       options.formData = form
     }
-    const data = await request(options)
+    const data = await rp(options)
     return data
   }
 }

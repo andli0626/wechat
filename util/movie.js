@@ -14,7 +14,7 @@ const getMovie = async (tag) => {
 
 const getNewData = async (tag) => {
   const data = await getMovie(tag)
-  const movieData = data.subjects
+  const movieData = data.subjects.length >= 3 ? data.subjects.slice(0, 3) : data.subjects
   let ret = []
   movieData.forEach(item => {
     ret.push({
