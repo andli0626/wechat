@@ -127,6 +127,7 @@
 }
 
 .casts-wrapper {
+  margin-top: 10px;
   overflow-x: scroll;
   white-space: nowrap;
 }
