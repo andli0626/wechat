@@ -1,6 +1,8 @@
 const axios = require('axios')
 const {request} = require('./index')
-
+const qiniu = require('qiniu')
+const nanoid = require('nanoid')
+const { AK, SK, bucket} = require('../config/base')
 
 let _uid = 0
 const UID_KEY = '__uid__'
@@ -89,18 +91,48 @@ function getUid() {
 }
 
 
-async function getSongUrl(name) {
+async function getSongData(name) {
   const song = await searchSong(name)
   // console.log(song)
   const vkey = await getKey(song.songmid)
   //console.log(vkey)
-  const url = `http://dl.stream.qqmusic.qq.com/C400${song.songmid}.m4a?vkey=${vkey}&guid=${getUid()}&uin=0&fromtag=66`
-  return url
+  const MusicUrl = `http://dl.stream.qqmusic.qq.com/C400${song.songmid}.m4a?vkey=${vkey}&guid=${getUid()}&uin=0&fromtag=66`
+  const Title = song.songname
+  const Description = song.singer[0].name
+  return {
+    MusicUrl,
+    Title,
+    Description
+  }
 }
 
 
-function callback(String) {
-  return JSON.parse(String)
+async function getQiniuUrl(url) {
+  const mac = new qiniu.auth.digest.Mac(AK, SK) 
+  const config = new qiniu.conf.Config()
+  const bucketManager = new qiniu.rs.BucketManager(mac, config)
+  const QiniuUrl = await uploadToQiniu(bucketManager, url, nanoid() + '.m4a')
+  return `http://wechats.kyriel.cn/${QiniuUrl}`
 }
 
-module.exports.getSongUrl = getSongUrl
+const uploadToQiniu = async (bucketManager, url, key) => {
+  return new Promise((resolve, reject) => {
+    bucketManager.fetch(url, bucket, key, function (err, respBody, respInfo) {
+      if (err) {
+        reject(err)
+      } else {
+        if (respInfo.statusCode == 200) {
+          resolve(respBody.key)
+        } else {
+          reject(respInfo)
+        }
+      }
+    })
+  })
+}
+
+
+module.exports = {
+  getSongData,
+  getQiniuUrl
+}

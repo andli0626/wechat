@@ -3,7 +3,7 @@ const wechat = new Wechat()
 const path = require('path')
 const menu = require('./menu')
 const {getNewData} = require('../util/movie')
-const {getSongUrl} = require('../util/song')
+const {getSongData, getQiniuUrl} = require('../util/song')
 let SendPicsCount = 0 //菜单发照片的数量
 module.exports = async (ctx, next) => {
   const message = ctx.wechat
@@ -71,10 +71,20 @@ module.exports = async (ctx, next) => {
             Articles: arr
           }
         } else {
-          const MusicURL = await getSongUrl(result[2])
+          const { Description, Title, MusicUrl} = await getSongData(result[2])
+          const data = await wechat.upload('thumb', path.resolve(__dirname, '../qrcode.jpg'))
+          const ThumbMediaId = data.thumb_media_id
+          /**
+           * 七牛上传
+           */
+          const QiniuUrl = await getQiniuUrl(MusicUrl)
           ctx.body = {
-            MsgType: 'text',
-            Content: `<a href="${MusicURL}">${result[2]}</a>`
+            MsgType: 'music',
+            Title: Title,
+            Description: Description,
+            MusicURL: Qiniuurl,
+            HQMusicUrl: Qiniuurl,
+            ThumbMediaId: ThumbMediaId
           }
         }
         break
