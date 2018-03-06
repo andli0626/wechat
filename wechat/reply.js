@@ -82,8 +82,8 @@ module.exports = async (ctx, next) => {
             MsgType: 'music',
             Title: Title,
             Description: Description,
-            MusicURL: Qiniuurl,
-            HQMusicUrl: Qiniuurl,
+            MusicURL: QiniuUrl,
+            HQMusicUrl: QiniuUrl,
             ThumbMediaId: ThumbMediaId
           }
         }
