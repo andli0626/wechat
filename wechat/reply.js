@@ -77,7 +77,7 @@ module.exports = async (ctx, next) => {
           /**
            * 七牛上传
            */
-          const QiniuUrl = await getQiniuUrl(MusicUrl)
+          const QiniuUrl = getQiniuUrl(MusicUrl)
           ctx.body = {
             MsgType: 'music',
             Title: Title,

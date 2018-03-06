@@ -3,9 +3,7 @@ const {request} = require('./index')
 const qiniu = require('qiniu')
 const nanoid = require('nanoid')
 const { AK, SK, bucket} = require('../config/base')
-
 let _uid = 0
-const UID_KEY = '__uid__'
 // const request = require('superagent')
 /**
  * 通过搜索到的歌曲mid, 获取到vKey的值
@@ -107,12 +105,13 @@ async function getSongData(name) {
 }
 
 
-async function getQiniuUrl(url) {
+function getQiniuUrl(url) {
   const mac = new qiniu.auth.digest.Mac(AK, SK) 
   const config = new qiniu.conf.Config()
   const bucketManager = new qiniu.rs.BucketManager(mac, config)
-  const QiniuUrl = await uploadToQiniu(bucketManager, url, nanoid() + '.m4a')
-  return `http://wechats.kyriel.cn/${QiniuUrl}`
+  const key = nanoid() + '.m4a'
+  const QiniuUrl = uploadToQiniu(bucketManager, url, key)
+  return `http://wechats.kyriel.cn/${key}`
 }
 
 const uploadToQiniu = async (bucketManager, url, key) => {
