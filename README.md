@@ -12,6 +12,5 @@
   ![电影2](http://kyriel.cn/pic/movie2.png)
 - **听音乐**
 
-  ![音乐1](http://kyriel.cn/pic/music.jpg)
-  ![音乐2](http://kyriel.cn/pic/music2.png)2
+  ![音乐1](http://kyriel.cn/pic/music.png)
 
